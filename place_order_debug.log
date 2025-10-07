@@ -1,0 +1,2 @@
+[2025-08-12 16:31:04] Raw input: {"email":"mrlatiopgamer@gmail.com","name":"Ayush Vyas","address":"J-404, AVALON COURTYARD-1, NEAR CADILA BRIDGE","payment_method":"COD","cart":[{"name":"Chocolate Delight","image":"img/h2.jpg","price":99,"quantity":1,"total":99}],"discount":15,"promo_code":"WELCOME"}
+[2025-08-12 16:31:04] Exception: Invalid product_id or quantity at cart index 0

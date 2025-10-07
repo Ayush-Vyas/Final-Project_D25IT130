@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About - Ayura Hampers</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #d6ebff, #e6f2ff);
+      color: #1a3e59;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      animation: fadeIn 1s ease forwards;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Floating bubbles background */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('https://www.transparenttextures.com/patterns/bubbles.png');
+      opacity: 0.12;
+      animation: floatBubbles 35s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes floatBubbles {
+      from { background-position: 0 0; }
+      to { background-position: 0 -800px; }
+    }
+
+    header {
+      background: linear-gradient(270deg, #3a91bf, #2e78a3, #3a91bf);
+      background-size: 400% 400%;
+      animation: gradientFlow 12s ease infinite;
+      padding: 20px 40px;
+      box-shadow: 0 3px 12px rgba(58, 145, 191, 0.5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    @keyframes gradientFlow {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    header h1 {
+      font-weight: 700;
+      font-size: clamp(1.6rem, 2.2vw, 2rem);
+      cursor: default;
+      letter-spacing: 2px;
+      color: #f0f9ff;
+      animation: slideInFromLeft 0.8s ease forwards;
+      user-select: none;
+      text-shadow: 1px 2px 4px rgba(0,0,0,0.25);
+    }
+
+    nav {
+      margin-top: 10px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #e1f0ff;
+      font-weight: 600;
+      position: relative;
+      font-size: 1rem;
+      padding: 6px 8px;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: #ffffff;
+      transform: translateY(-3px) scale(1.05);
+      text-shadow: 0 0 6px rgba(255,255,255,0.6);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #ffffff;
+      bottom: -5px;
+      left: 0;
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    nav a:hover::after,
+    nav a:focus::after {
+      width: 100%;
+    }
+
+    /* Wave divider */
+    .wave {
+      position: relative;
+      width: 100%;
+      height: 80px;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .wave svg {
+      position: relative;
+      display: block;
+      width: calc(150% + 1.3px);
+      height: 80px;
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 70px 20px;
+      max-width: 950px;
+      margin: 0 auto;
+      animation: fadeInUp 1s ease forwards;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .about-card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px);
+      padding: 45px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(58, 145, 191, 0.25);
+      animation: fadeInCard 1.2s ease forwards;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      user-select: none;
+      cursor: default;
+    }
+
+    .about-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 45px rgba(58, 145, 191, 0.35);
+    }
+
+    .about-card h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: #2a557f;
+      margin-bottom: 25px;
+      border-bottom: 3px solid #3a91bf;
+      padding-bottom: 8px;
+      display: inline-block;
+      user-select: none;
+      animation: fadeSlideDown 1s ease;
+    }
+
+    @keyframes fadeSlideDown {
+      from {opacity: 0; transform: translateY(-15px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .about-card p {
+      font-size: clamp(1rem, 1.4vw, 1.25rem);
+      line-height: 1.9;
+      margin-bottom: 28px;
+      color: #3d5c77;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeIn 1.5s ease;
+    }
+
+    footer {
+      text-align: center;
+      padding: 22px 10px;
+      background: linear-gradient(270deg, #3a91bf, #2e78a3, #3a91bf);
+      background-size: 400% 400%;
+      animation: gradientFlow 12s ease infinite;
+      color: #f0f9ff;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      box-shadow: 0 -3px 10px rgba(58, 145, 191, 0.6);
+      user-select: none;
+      position: relative;
+      z-index: 10;
+      text-shadow: 0 0 6px rgba(255, 255, 255, 0.35);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeInCard {
+      from {opacity: 0; transform: scale(0.98);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    @keyframes slideInFromLeft {
+      from {opacity: 0; transform: translateX(-30px);}
+      to {opacity: 1; transform: translateX(0);}
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        margin-top: 12px;
+      }
+
+      .about-card {
+        padding: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ayura Hampers</h1>
+    <nav>
+      <a href="index.php">Home</a>
+      <a href="contact.php">Contact</a>
+      <a href="dashboard.php">Dashboard</a>
+      <a href="profile.php">Profile</a>
+      <a href="faq.html">FAQ</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </header>
+
+  <!-- Wave Divider below header -->
+  <div class="wave">
+    <svg viewBox="0 0 500 80" preserveAspectRatio="none">
+      <path d="M0,40 C150,100 350,0 500,40 L500,00 L0,0 Z" style="stroke: none; fill: #e6f2ff;"></path>
+    </svg>
+  </div>
+
+  <main>
+    <div class="about-card" tabindex="0" aria-label="About Ayura Hampers">
+      <h2>About Ayura Hampers</h2>
+      <p>
+        Ayura Hampers was founded with a mission to create beautiful, personalized gift hampers that make every celebration memorable.
+        We believe that gifting is an art, and our collections blend tradition with modern elegance.
+        Each hamper is thoughtfully curated with premium products sourced ethically to ensure quality and delight.
+      </p>
+      <p>
+        Whether you are looking for corporate gifting or personal occasions, Ayura Hampers offers a seamless and joyful shopping experience.
+        Join our community to receive exclusive updates, events, and offers that elevate your gifting moments.
+      </p>
+    </div>
+  </main>
+
+  <!-- Wave Divider above footer -->
+  <div class="wave">
+    <svg viewBox="0 0 500 80" preserveAspectRatio="none">
+      <path d="M0,40 C150,0 350,100 500,40 L500,100 L0,100 Z" style="stroke: none; fill: #e6f2ff;"></path>
+    </svg>
+  </div>
+
+  <footer>
+    &copy; 2025 Ayura Hampers. All rights reserved.
+  </footer>
+</body>
+</html>

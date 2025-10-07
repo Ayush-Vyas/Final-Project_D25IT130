@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAQ - Ayura Hampers</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e6f2ff, #f0f9ff);
+      color: #1a3e59;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.4s, color 0.4s;
+    }
+
+    body.dark {
+      background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+      color: #f0f0f0;
+    }
+
+    header {
+      background: linear-gradient(to right, #3a91bf, #2a557f);
+      padding: 20px 40px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      font-weight: 800;
+      font-size: 1.8rem;
+      color: #f0f9ff;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #f0f9ff;
+      margin: 0 12px;
+      font-weight: 600;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #a6d1ff;
+    }
+
+    .theme-toggle {
+      background: #ffffff33;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #f0f9ff;
+      transition: background 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background: #ffffff55;
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    main h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #2a557f;
+    }
+
+    .search-box {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .search-box input {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px 15px;
+      border-radius: 25px;
+      border: 1px solid #a6d1ff;
+      outline: none;
+      font-size: 1rem;
+      transition: box-shadow 0.3s;
+    }
+
+    .search-box input:focus {
+      box-shadow: 0 0 8px #3a91bf;
+    }
+
+    .faq-item {
+      background: #ffffffcc;
+      border: 1px solid #a6d1ff;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      padding: 15px 20px;
+      box-shadow: 0 2px 6px rgba(42, 85, 127, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    body.dark .faq-item {
+      background: #2a2a2a;
+      border: 1px solid #555;
+      color: #f0f0f0;
+    }
+
+    .faq-question {
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      position: relative;
+      padding-right: 30px;
+    }
+
+    .faq-question::after {
+      content: '▶';
+      position: absolute;
+      right: 0;
+      font-size: 1.1rem;
+      transition: transform 0.3s ease;
+      color: #3a91bf;
+    }
+
+    .faq-item.active .faq-question::after {
+      transform: rotate(90deg);
+      color: #2a557f;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      margin-top: 10px;
+      color: #2a557f;
+      line-height: 1.6;
+      transition: max-height 0.4s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px 10px;
+      background: linear-gradient(to right, #3a91bf, #2a557f);
+      color: #f0f9ff;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        margin-top: 10px;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 8px 10px 0 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Ayura Hampers</h1>
+    <nav>
+      <a href="index.php">Home</a>
+      <a href="about.html">About</a>
+      <a href="dashboard.php">Dashboard</a>
+      <a href="profile.php">Profile</a>
+      <a href="contact.php">Contact</a>
+    </nav>
+    <button class="theme-toggle">🌙 Dark</button>
+  </header>
+
+  <main>
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="search-box">
+      <input type="text" id="search" placeholder="Search questions..." />
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How long does delivery take?</div>
+      <div class="faq-answer">Typically 3–5 business days, depending on your location and shipping method selected.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Can I customize my hamper?</div>
+      <div class="faq-answer">Yes! We offer full customization options including product choice, packaging, and personalized messages.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Do you offer bulk orders for corporate gifting?</div>
+      <div class="faq-answer">Absolutely! We specialize in corporate gifting and offer discounts for bulk purchases. Contact us for more details.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">Are your products eco-friendly?</div>
+      <div class="faq-answer">Yes, we prioritize sustainability. Our packaging and many of our products are eco-conscious and ethically sourced.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">What payment methods do you accept?</div>
+      <div class="faq-answer">We accept credit/debit cards, UPI, net banking, and wallet payments.</div>
+    </div>
+
+  </main>
+
+  <footer>
+    &copy; 2025 Ayura Hampers. All rights reserved.
+  </footer>
+
+  <script>
+    // Accordion toggle
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      item.querySelector('.faq-question').addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+    });
+
+    // FAQ search filter
+    document.getElementById('search').addEventListener('input', function() {
+      const term = this.value.toLowerCase();
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question').innerText.toLowerCase();
+        item.style.display = question.includes(term) ? "block" : "none";
+      });
+    });
+
+    // Dark mode toggle with localStorage
+    const toggleBtn = document.querySelector('.theme-toggle');
+    const body = document.body;
+
+    // Load saved theme
+    if (localStorage.getItem('theme') === 'dark') {
+      body.classList.add('dark');
+      toggleBtn.textContent = "☀️ Light";
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      if (body.classList.contains('dark')) {
+        localStorage.setItem('theme', 'dark');
+        toggleBtn.textContent = "☀️ Light";
+      } else {
+        localStorage.setItem('theme', 'light');
+        toggleBtn.textContent = "🌙 Dark";
+      }
+    });
+  </script>
+
+</body>
+</html>

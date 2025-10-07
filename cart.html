@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ayura Hampers - Cart</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      padding: 40px;
+      background: linear-gradient(135deg, #e6f2ff, #f0f9ff);
+      color: #1a3e59;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #2a557f;
+      user-select: none;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: #ffffffcc;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(58, 145, 191, 0.15);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #a6d1ff;
+      color: #1a3e59;
+    }
+
+    th {
+      background-color: #a6d1ff;
+      color: #0f2446;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    td:last-child {
+      font-weight: 700;
+    }
+
+    img {
+      border-radius: 8px;
+    }
+
+    .qty-btn {
+      padding: 5px 10px;
+      margin: 0 5px;
+      background-color: #3a91bf;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .qty-btn:hover {
+      background-color: #2a557f;
+    }
+
+    .empty-msg {
+      font-size: 1.2rem;
+      color: #2a557f;
+      text-align: center;
+      user-select: none;
+    }
+
+    .checkout-btn {
+      margin-top: 30px;
+      padding: 15px 25px;
+      background: linear-gradient(45deg, #3a91bf, #2a557f);
+      color: #f0f9ff;
+      font-size: 1rem;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      user-select: none;
+      box-shadow: 0 6px 12px rgba(58, 145, 191, 0.5);
+      transition: background 0.4s ease, transform 0.2s ease;
+    }
+
+    .checkout-btn:hover {
+      background: linear-gradient(45deg, #2a557f, #3a91bf);
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(58, 145, 191, 0.7);
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Cart</h1>
+  <div id="cart-container"></div>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function updateCart() {
+      const container = document.getElementById("cart-container");
+
+      if (cart.length === 0) {
+        container.innerHTML = "<p class='empty-msg'>Your cart is empty.</p>";
+        return;
+      }
+
+      let html = `<table>
+        <tr>
+          <th>Image</th>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>`;
+
+      cart.forEach((item, index) => {
+        html += `
+          <tr>
+            <td><img src="${item.image}" alt="${item.name}" width="80"></td>
+            <td>${item.name}</td>
+            <td>₹${item.price}</td>
+            <td>
+              <button class="qty-btn" onclick="changeQty(${index}, -1)">−</button>
+              ${item.quantity}
+              <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+            </td>
+            <td>₹${item.total}</td>
+          </tr>`;
+      });
+
+      html += `</table>
+        <button class="checkout-btn" onclick="goToCheckout()">Proceed to Checkout</button>`;
+
+      container.innerHTML = html;
+    }
+
+    function changeQty(index, delta) {
+      cart[index].quantity += delta;
+
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1); // remove item
+      } else {
+        cart[index].total = cart[index].quantity * cart[index].price;
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      updateCart();
+    }
+
+    function goToCheckout() {
+      window.location.href = "checkout.php";
+    }
+
+    updateCart();
+  </script>
+</body>
+</html>
